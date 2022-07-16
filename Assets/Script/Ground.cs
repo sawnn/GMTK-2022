@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // si le dé touche une case grise, HideColor()
+        // (si temps suffisant écoulé) + si nombre de dalles passées suffisant 
     }
+
+    void HideColor()
+    {
+
+    }
+
+    private void RevealColor()
+    {
+
+    }
+
 }
