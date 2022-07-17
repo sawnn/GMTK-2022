@@ -7,8 +7,10 @@ public class Dice : MonoBehaviour
 
     int nb = 1;
 
-    int life = 50;
-    int heat = 0;
+    public int life = 50;
+    public int heat = 50;
+
+    int steps = 0;
 
     List<int> horizontalFaces = new List<int> { 1, 5, 6, 2 };
 
@@ -31,6 +33,7 @@ public class Dice : MonoBehaviour
             horizontalFaces.Insert(0, last);
             verticalFaces[0] = horizontalFaces[0];
             verticalFaces[2] = horizontalFaces[2];
+            nb = horizontalFaces[0];
             StartCoroutine(Roll(Vector3.right));
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
@@ -40,6 +43,7 @@ public class Dice : MonoBehaviour
             horizontalFaces.Add(first);
             verticalFaces[0] = horizontalFaces[0];
             verticalFaces[2] = horizontalFaces[2];
+            nb = horizontalFaces[0];
             StartCoroutine(Roll(Vector3.left));
         }
         else if (Input.GetKey(KeyCode.UpArrow))
@@ -49,6 +53,7 @@ public class Dice : MonoBehaviour
             verticalFaces.Add(first);
             horizontalFaces[0] = verticalFaces[0];
             horizontalFaces[2] = verticalFaces[2];
+            nb = horizontalFaces[0];
             StartCoroutine(Roll(Vector3.forward));
         }
         else if (Input.GetKey(KeyCode.DownArrow))
@@ -58,6 +63,7 @@ public class Dice : MonoBehaviour
             verticalFaces.Insert(0, last);
             horizontalFaces[0] = verticalFaces[0];
             horizontalFaces[2] = verticalFaces[2];
+            nb = horizontalFaces[0];
             StartCoroutine(Roll(Vector3.back));
         }
    
@@ -66,7 +72,7 @@ public class Dice : MonoBehaviour
     IEnumerator Roll(Vector3 direction)
     {
         isMoving = true;
-
+        steps++;
         float remainingAngle = 90;
         Vector3 rotationCenter = transform.position + direction / 2 + Vector3.down / 2;
         Vector3 rotationAxis = Vector3.Cross(Vector3.up, direction);
@@ -78,8 +84,107 @@ public class Dice : MonoBehaviour
             remainingAngle -= rotationAngle;
             yield return null;
         }
-
         isMoving = false;
+    }
+
+    IEnumerator CountDiceSteps(int maxSteps)
+    {
+        steps = 0;
+        while (steps < maxSteps)
+        {
+            Debug.Log(steps);
+            yield return null;
+        }
+
+        Unblind(false);
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+       // if (isMoving)
+            Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Fire"))
+        {
+            Fire();
+        }
+
+        if (collision.gameObject.CompareTag("HealFire"))
+        {
+            HealFire();
+        }
+
+        if (collision.gameObject.CompareTag("Damage"))
+        {
+            Damage();
+        }
+
+        if (collision.gameObject.CompareTag("HealDamage"))
+        {
+            HealDamage();
+        }
+
+        if (collision.gameObject.CompareTag("Blind") && collision.gameObject.GetComponent<Ground>().isBlank == false)
+        {
+            Blind();
+        }
+
+        if (collision.gameObject.CompareTag("Unblind"))
+        {
+            Unblind(true);
+        }
+    }
+
+
+    void Fire()
+    {
+        heat -= nb;
+    }
+
+    void HealFire()
+    {
+        heat += nb;
+    }
+
+    void Damage()
+    {
+        life -= nb;
+    }
+
+    void HealDamage()
+    {
+        life += nb;
+    }
+
+    void Blind()
+    {
+        foreach (var ground in GridManager.Instance.l_ground)
+        {
+            ground.HideColor();
+        }
+        StartCoroutine(CountDiceSteps(nb));
+    }
+
+    void Unblind(bool bonus)
+    {
+        StopCoroutine("CountDiceSteps");
+        foreach (var ground in GridManager.Instance.l_ground)
+        {
+            if (bonus && ground.gameObject.CompareTag("Blind"))
+            {
+                ground.ChangeGreyInWhite();
+            }
+            else
+            {
+                ground.RevealColor();
+            }
+        }
+        if (bonus)
+        {
+            StartCoroutine(CountDiceSteps(nb));
+            Debug.Log(nb);
+        }
+ 
     }
 
 }
