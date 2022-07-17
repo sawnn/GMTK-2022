@@ -10,8 +10,11 @@ public class Dice : MonoBehaviour
 
     public int life = 15;
     public int heat = 0;
+    public int maxHeat = 15;
+
 
     int steps = 0;
+    public int score = 0;
 
     List<int> horizontalFaces = new List<int> { 1, 5, 6, 2 };
 
@@ -44,6 +47,9 @@ public class Dice : MonoBehaviour
     public Sprite five;
     public Sprite six;
 
+    //GameOver Manon
+    public GameOver gameOver;
+
     void Start()
     {
         fireBar.SetMinFire();
@@ -60,6 +66,7 @@ public class Dice : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            _score++;
             int last = horizontalFaces[horizontalFaces.Count - 1];
             horizontalFaces.Remove(last);
             horizontalFaces.Insert(0, last);
@@ -70,6 +77,7 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
+            _score++;
             int first = horizontalFaces[0];
             horizontalFaces.RemoveAt(0);
             horizontalFaces.Add(first);
@@ -80,6 +88,7 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
+            _score++;
             int first = verticalFaces[0];
             verticalFaces.RemoveAt(0);
             verticalFaces.Add(first);
@@ -90,6 +99,7 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
+            _score++;
             int last = verticalFaces[verticalFaces.Count - 1];
             verticalFaces.Remove(last);
             verticalFaces.Insert(0, last);
@@ -203,8 +213,12 @@ public class Dice : MonoBehaviour
 
     void Fire()
     {
-        heat = Mathf.Min(heat + nb, 15); //ajout Manon
+        heat = Mathf.Min(heat + nb, maxHeat); //ajout Manon
         fireBar.SetFire(heat);
+        if (heat == maxHeat)
+        {
+            gameOver.GameOverScreen();
+        }
     }
 
     void HealFire()
@@ -217,6 +231,11 @@ public class Dice : MonoBehaviour
     {
         life = Mathf.Max(life - nb, 0); //ajout Manon
         healthBar.SetHealth(life);
+
+        if (life == 0)
+        {
+            gameOver.GameOverScreen();
+        }
     }
 
     void HealDamage()
