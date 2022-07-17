@@ -6,39 +6,81 @@ public class GridManager : MonoSingleton<GridManager>
 {
 
     [SerializeField] GameObject[] prefab;
-    [SerializeField] int gridWidth = 20;
-    [SerializeField] int gridHeight = 20;
-    [SerializeField] float tileSize = 1f;
+    [SerializeField] GameObject startPrefab;
+    [SerializeField] int squareGridDimension = 8;
+
 
     public List<Ground> l_ground = new List<Ground>();
 
-    void Start()
+
+    GameObject newSlab;
+    private int xMax;
+    private int zMax;
+
+    private void Start()
     {
-        GenerateGrid();
+        xMax = squareGridDimension;
+        zMax = squareGridDimension;
+        GenerateSlabList();
     }
 
-    private void GenerateGrid()
+    private void Update()
     {
-        float posX = 0;
-        float posZ = 0;
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            NewGridLine();
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            NewGridRow();
+    }
 
-        for (int x = 0; x < gridWidth; x++)
+    public void GenerateSlabList()
+    {
+
+        for (int x = 0; x < squareGridDimension; x++)
         {
-            for (int z = 0; z < gridHeight; z++)
+            for (int z = 0; z < squareGridDimension; z++)
             {
-                var randomTile = prefab[Random.Range(0, prefab.Length)];
-                GameObject newTile = Instantiate(randomTile, transform);
-                l_ground.Add(newTile.GetComponent<Ground>());
-
-
-                posZ += tileSize;
-
-                newTile.transform.position = new Vector3(posX, 0, posZ);
-                newTile.name = x + " , " + z;
                 
+                if (x == 0 && z == 0)
+                {
+                    newSlab = Instantiate(startPrefab, transform);
+                }
+
+
+                else
+                {
+                var randomSlab = prefab[Random.Range(0, prefab.Length)];
+                newSlab = Instantiate(randomSlab, transform);
+                l_ground.Add(newSlab.GetComponent<Ground>());
+                }
+
+                newSlab.transform.position = new Vector3(x, 0, z);
+                newSlab.name = x + " , " + z;
+
             }
-            posX = (x * tileSize);
-            posZ = 0;
         }
+    }
+
+    private void NewGridRow()
+    {
+        for (int x = 0; x < xMax; x++)
+        {
+            var randomSlab = prefab[Random.Range(0, prefab.Length)];
+            newSlab = Instantiate(randomSlab, transform);
+            newSlab.transform.position = new Vector3(x, 0, zMax);
+            newSlab.name = x + " , " + zMax;
+        }
+        zMax++;
+    }
+
+    private void NewGridLine()
+    {
+        for (int z = 0; z < zMax; z++)
+        {
+            var randomSlab = prefab[Random.Range(0, prefab.Length)];
+            newSlab = Instantiate(randomSlab, transform);
+            newSlab.transform.position = new Vector3(xMax, 0, z);
+            newSlab.name = xMax + " , " + z;
+        }
+        xMax++;
     }
 }
