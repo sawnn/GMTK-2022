@@ -244,11 +244,15 @@ public class Dice : MonoBehaviour
         healthBar.SetHealth(life);
     }
 
-    void Blind()
+  void Blind()
     {
         foreach (var ground in GridManager.Instance.l_ground)
         {
-            ground.HideColor();
+            foreach (var item in ground)
+            {
+                item.HideColor();
+            }
+            
         }
         StartCoroutine(CountDiceSteps(nb));
     }
@@ -258,14 +262,18 @@ public class Dice : MonoBehaviour
         StopCoroutine("CountDiceSteps");
         foreach (var ground in GridManager.Instance.l_ground)
         {
-            if (bonus && ground.gameObject.CompareTag("Blind"))
+            foreach (var item in ground)
             {
-                ground.ChangeGreyInWhite();
+                if (bonus && item.gameObject.CompareTag("Blind"))
+                {
+                    item.ChangeGreyInWhite();
+                }
+                else
+                {
+                    item.RevealColor();
+                }
             }
-            else
-            {
-                ground.RevealColor();
-            }
+           
         }
         if (bonus)
         {
