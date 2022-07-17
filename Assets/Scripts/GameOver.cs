@@ -7,17 +7,18 @@ using UnityEngine.UI;
 public class GameOver : MonoBehaviour
 {
     public GameObject GameOverUI;
-    public Text textScore; //scoraValue
+    public Text textScore; //scoreValue
     public Dice dice;
 
     void Start()
     {
-        textScore.GetComponent<Text>() = dice.score;
+
     }
 
     public void GameOverScreen()
     {
         GameOverUI.SetActive(true);
+        textScore.text = dice.score.ToString();
         Time.timeScale = 0f;
     }
 

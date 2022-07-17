@@ -66,7 +66,7 @@ public class Dice : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            _score++;
+            score++;
             int last = horizontalFaces[horizontalFaces.Count - 1];
             horizontalFaces.Remove(last);
             horizontalFaces.Insert(0, last);
@@ -77,7 +77,7 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            _score++;
+            score++;
             int first = horizontalFaces[0];
             horizontalFaces.RemoveAt(0);
             horizontalFaces.Add(first);
@@ -88,7 +88,7 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            _score++;
+            score++;
             int first = verticalFaces[0];
             verticalFaces.RemoveAt(0);
             verticalFaces.Add(first);
@@ -99,7 +99,7 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            _score++;
+            score++;
             int last = verticalFaces[verticalFaces.Count - 1];
             verticalFaces.Remove(last);
             verticalFaces.Insert(0, last);
