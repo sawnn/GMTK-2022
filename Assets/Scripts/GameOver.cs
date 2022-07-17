@@ -25,6 +25,7 @@ public class GameOver : MonoBehaviour
     public void NewGame()
     {
         GameOverUI.SetActive(false);
+        Time.timeScale = 1f;
         SceneManager.LoadScene(1); //Main Menu index
     }
 
