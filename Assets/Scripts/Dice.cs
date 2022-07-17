@@ -23,6 +23,8 @@ public class Dice : MonoBehaviour
     public int speed = 300;
     bool isMoving = false;
 
+    bool startRem = false;
+
 
     //UI Manon
     public FireBar fireBar;
@@ -50,9 +52,6 @@ public class Dice : MonoBehaviour
     //GameOver Manon
     public GameOver gameOver;
 
-    //autre Manon
-    public bool dead = false;
-
     void Start()
     {
         fireBar.SetMinFire();
@@ -67,8 +66,15 @@ public class Dice : MonoBehaviour
             return;
         }
 
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            if (startRem == false)
+            {
+                startRem = true;
+                GridManager.Instance.StartRemove();
+            }
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int last = horizontalFaces[horizontalFaces.Count - 1];
             horizontalFaces.Remove(last);
@@ -80,6 +86,12 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
+            if (startRem == false)
+            {
+                startRem = true;
+                GridManager.Instance.StartRemove();
+            }
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int first = horizontalFaces[0];
             horizontalFaces.RemoveAt(0);
@@ -91,6 +103,12 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
+            if (startRem == false)
+            {
+                startRem = true;
+                GridManager.Instance.StartRemove();
+            }
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int first = verticalFaces[0];
             verticalFaces.RemoveAt(0);
@@ -102,6 +120,12 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
+            if (startRem == false)
+            {
+                startRem = true;
+                GridManager.Instance.StartRemove();
+            }
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int last = verticalFaces[verticalFaces.Count - 1];
             verticalFaces.Remove(last);
@@ -136,6 +160,8 @@ public class Dice : MonoBehaviour
    
     }
 
+    
+
     IEnumerator Roll(Vector3 direction)
     {
         isMoving = true;
@@ -152,6 +178,7 @@ public class Dice : MonoBehaviour
             yield return null;
         }
         isMoving = false;
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
     }
 
     IEnumerator CountDiceSteps(int maxSteps)
@@ -159,18 +186,21 @@ public class Dice : MonoBehaviour
         steps = 0;
         while (steps < maxSteps)
         {
-
             yield return null;
         }
 
         Unblind(false);
     }
 
+ 
+    private void OnTriggerEnter(Collider other)
+    {
+        gameOver.GameOverScreen();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-       // if (isMoving)
-            Debug.Log(collision.gameObject.tag);
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Fire"))
         {
             Fire();
@@ -247,11 +277,18 @@ public class Dice : MonoBehaviour
         healthBar.SetHealth(life);
     }
 
-    void Blind()
+  void Blind()
     {
         foreach (var ground in GridManager.Instance.l_ground)
         {
-            ground.HideColor();
+            foreach (var item in ground)
+            {
+                if (item != null)
+                {
+                    item.HideColor();
+                }
+            }
+            
         }
         StartCoroutine(CountDiceSteps(nb));
     }
@@ -261,19 +298,25 @@ public class Dice : MonoBehaviour
         StopCoroutine("CountDiceSteps");
         foreach (var ground in GridManager.Instance.l_ground)
         {
-            if (bonus && ground.gameObject.CompareTag("Blind"))
+            foreach (var item in ground)
             {
-                ground.ChangeGreyInWhite();
+                if (item != null)
+                {
+                    if (bonus && item.gameObject.CompareTag("Blind"))
+                    {
+                        item.ChangeGreyInWhite();
+                    }
+                    else
+                    {
+                        item.RevealColor();
+                    }
+                }
             }
-            else
-            {
-                ground.RevealColor();
-            }
+           
         }
         if (bonus)
         {
             StartCoroutine(CountDiceSteps(nb));
-            Debug.Log(nb);
         }
  
     }
