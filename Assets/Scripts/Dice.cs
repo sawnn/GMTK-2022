@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dice : MonoBehaviour
 {
@@ -22,12 +23,32 @@ public class Dice : MonoBehaviour
 
     //UI Manon
     public FireBar fireBar;
-    public HealthBar HealthBar;
+    public HealthBar healthBar;
+
+    //pas très propre, il vaut mieux utiliser des listes ou tableaux mais la flemme on a pas le time
+    public Image currentTile;
+    public Sprite red;
+    public Sprite blue;
+    public Sprite purple;
+    public Sprite green;
+    public Sprite gray;
+    public Sprite white;
+    public Sprite gold;
+    public Sprite start;
+
+    public Image currentDiceFace;
+    public Sprite one;
+    public Sprite two;
+    public Sprite three;
+    public Sprite four;
+    public Sprite five;
+    public Sprite six;
 
     void Start()
     {
         fireBar.SetMinFire();
-        HealthBar.SetMaxHealth(life);
+        healthBar.SetMaxHealth(life);
+        currentTile.GetComponent<Image>().sprite = start;
     }
 
     void Update()
@@ -77,6 +98,28 @@ public class Dice : MonoBehaviour
             nb = horizontalFaces[0];
             StartCoroutine(Roll(Vector3.back));
         }
+
+        switch (nb)
+        {
+            case 1:
+                currentDiceFace.GetComponent<Image>().sprite = one;
+                break;
+            case 2:
+                currentDiceFace.GetComponent<Image>().sprite = two;
+                break;
+            case 3:
+                currentDiceFace.GetComponent<Image>().sprite = three;
+                break;
+            case 4:
+                currentDiceFace.GetComponent<Image>().sprite = four;
+                break;
+            case 5:
+                currentDiceFace.GetComponent<Image>().sprite = five;
+                break;
+            case 6:
+                currentDiceFace.GetComponent<Image>().sprite = six;
+                break;
+        }
    
     }
 
@@ -118,31 +161,42 @@ public class Dice : MonoBehaviour
         if (collision.gameObject.CompareTag("Fire"))
         {
             Fire();
+            currentTile.GetComponent<Image>().sprite = red; //ajout Manon
         }
 
         if (collision.gameObject.CompareTag("HealFire"))
         {
             HealFire();
+            currentTile.GetComponent<Image>().sprite = blue; //ajout Manon
         }
 
         if (collision.gameObject.CompareTag("Damage"))
         {
             Damage();
+            currentTile.GetComponent<Image>().sprite = purple; //ajout Manon
         }
 
         if (collision.gameObject.CompareTag("HealDamage"))
         {
             HealDamage();
+            currentTile.GetComponent<Image>().sprite = green; //ajout Manon
         }
 
         if (collision.gameObject.CompareTag("Blind") && collision.gameObject.GetComponent<Ground>().isBlank == false)
         {
             Blind();
+            currentTile.GetComponent<Image>().sprite = gray; //ajout Manon
         }
 
         if (collision.gameObject.CompareTag("Unblind"))
         {
             Unblind(true);
+            currentTile.GetComponent<Image>().sprite = gold; //ajout Manon
+        }
+
+        if (collision.gameObject.GetComponent<Ground>().isBlank == true) //ajout Manon
+        {
+            currentTile.GetComponent<Image>().sprite = white;
         }
     }
 
@@ -162,13 +216,13 @@ public class Dice : MonoBehaviour
     void Damage()
     {
         life = Mathf.Max(life - nb, 0); //ajout Manon
-        HealthBar.SetHealth(life);
+        healthBar.SetHealth(life);
     }
 
     void HealDamage()
     {
         life = Mathf.Min(life + nb, 15); //ajout Manon
-        HealthBar.SetHealth(life);
+        healthBar.SetHealth(life);
     }
 
     void Blind()
