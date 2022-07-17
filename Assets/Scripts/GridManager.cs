@@ -6,39 +6,58 @@ public class GridManager : MonoBehaviour
 {
 
     [SerializeField] GameObject[] prefab;
-    [SerializeField] int gridWidth = 20;
-    [SerializeField] int gridHeight = 20;
-    [SerializeField] float tileSize = 1f;
+    [SerializeField] GameObject startPrefab;
+    [SerializeField] int squareGridDimension = 8;
+
 
     List<Ground> l_ground = new List<Ground>();
 
-    void Start()
+    private void Start()
     {
-        GenerateGrid();
+        GenerateSlabList();
+        //CreateGrid();
     }
 
-    private void GenerateGrid()
+    private void GenerateSlabList()
     {
         float posX = 0;
         float posZ = 0;
 
-        for (int x = 0; x < gridWidth; x++)
+
+        for (int x = 0; x < squareGridDimension; x++)
         {
-            for (int z = 0; z < gridHeight; z++)
+            for (int z = 0; z < squareGridDimension; z++)
             {
-                var randomTile = prefab[Random.Range(0, prefab.Length)];
-                GameObject newTile = Instantiate(randomTile, transform);
-                l_ground.Add(newTile.GetComponent<Ground>());
+                GameObject newSlab;
+                if (x == 0 && z == 0)
+                {
+                    newSlab = Instantiate(startPrefab, transform);
+                }
 
 
-                posZ += tileSize;
+                else
+                {
+                    var randomSlab = prefab[Random.Range(0, prefab.Length)];
+                    newSlab = Instantiate(randomSlab, transform);
+                    //l_ground.Add(newTile.GetComponent<Ground>());
+                }
+                    posZ += 1;
 
-                newTile.transform.position = new Vector3(posX, 0, posZ);
-                newTile.name = x + " , " + z;
+                    newSlab.transform.position = new Vector3(posX, 0, posZ);
+                    newSlab.name = x + " , " + z;
+
+                    if (x != 0)
+                        posX = x;
+                
                 
             }
-            posX = (x * tileSize);
             posZ = 0;
         }
     }
+
+    private void CreateGrid()
+    {
+
+    }
+
 }
