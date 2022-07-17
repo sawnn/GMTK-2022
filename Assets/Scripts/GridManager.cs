@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridManager : MonoBehaviour
+public class GridManager : MonoSingleton<GridManager>
 {
 
     [SerializeField] GameObject[] prefab;
@@ -10,7 +10,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] int gridHeight = 20;
     [SerializeField] float tileSize = 1f;
 
-    List<Ground> l_ground = new List<Ground>();
+    public List<Ground> l_ground = new List<Ground>();
 
     void Start()
     {
