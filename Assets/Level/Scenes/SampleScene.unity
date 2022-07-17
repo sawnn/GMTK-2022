@@ -153,12 +153,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab:
-  - {fileID: 4196096481654346511, guid: c0f385ea272e29846a6da089f991cf0a, type: 3}
-  - {fileID: 4196096481654346511, guid: e9a7fa110e4b7ab4d9f334ac37937ce9, type: 3}
   - {fileID: 4196096481654346511, guid: a189e9c09382c484cb6961861b63b5ab, type: 3}
+  - {fileID: 4196096481654346511, guid: e9a7fa110e4b7ab4d9f334ac37937ce9, type: 3}
+  - {fileID: 4196096481654346511, guid: c0f385ea272e29846a6da089f991cf0a, type: 3}
+  - {fileID: 4196096481654346511, guid: a92127cef363ac84c904f9faf71951d5, type: 3}
   - {fileID: 4196096481654346511, guid: 41b4df97fc7a8524ab58504ff4a97793, type: 3}
   - {fileID: 4196096481654346511, guid: 3f533325ad122fb45ae155ea7ef65f0c, type: 3}
-  - {fileID: 4196096481654346511, guid: a92127cef363ac84c904f9faf71951d5, type: 3}
   startPrefab: {fileID: 7704830391122193287, guid: 56dd41adb1d94d143ba3ea7d90d8bac2, type: 3}
   squareGridDimension: 8
   l_ground: []
@@ -472,18 +472,6 @@ PrefabInstance:
     - target: {fileID: 5257507014934379396, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
       propertyPath: m_Name
       value: Dice
-      objectReference: {fileID: 0}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: heat
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: life
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: speed
-      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}

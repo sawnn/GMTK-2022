@@ -789,85 +789,13 @@ PrefabInstance:
       value: Dice
       objectReference: {fileID: 0}
     - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: one
-      value: 
-      objectReference: {fileID: 21300000, guid: 188f953be62a77541bdc6d322645f245, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: red
-      value: 
-      objectReference: {fileID: 21300000, guid: 248339d32714b0448989a6dbe3b88cac, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: six
-      value: 
-      objectReference: {fileID: 21300000, guid: 32f16c1e2f141cd4f9e451d7cca253bc, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: two
-      value: 
-      objectReference: {fileID: 21300000, guid: 8cf2942a3272e774f8ae28e7d954bb52, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: blue
-      value: 
-      objectReference: {fileID: 21300000, guid: f28b53b3b02fb1e478183d47e7acca5b, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: five
-      value: 
-      objectReference: {fileID: 21300000, guid: b8f83e13890fe694780505e7361f1f66, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: four
-      value: 
-      objectReference: {fileID: 21300000, guid: 64374e2d11597924abee0f6da93daf30, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: gold
-      value: 
-      objectReference: {fileID: 21300000, guid: 303f75dab1a648b4e86a218c78551824, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: gray
-      value: 
-      objectReference: {fileID: 21300000, guid: 6c0fb7e3295d4f041aac1ab5f155e14d, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: heat
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: life
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: green
-      value: 
-      objectReference: {fileID: 21300000, guid: 137d4ebd92a69db4082d569423943658, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: start
-      value: 
-      objectReference: {fileID: 21300000, guid: 265fb7669a5809b47a2ce19b9e6f8142, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: three
-      value: 
-      objectReference: {fileID: 21300000, guid: d715af6b8f98ffc44b46d1e38f90c226, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: white
-      value: 
-      objectReference: {fileID: 21300000, guid: c70ca6365c115204e8f4c4992d6f4f28, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: purple
-      value: 
-      objectReference: {fileID: 21300000, guid: 97649cdaa6e6f464f9fb2d0367b008bc, type: 3}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
       propertyPath: fireBar
       value: 
       objectReference: {fileID: 1748927992}
     - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: HealthBar
-      value: 
-      objectReference: {fileID: 1917587573}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1917587573}
-    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
-      propertyPath: actualTile
-      value: 
-      objectReference: {fileID: 953595529}
     - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
       propertyPath: currentTile
       value: 
@@ -1244,10 +1172,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6642796287479359979, guid: 22ca4b90d84c9024c9e4f0df7435a8ff, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6642796287599848265, guid: 22ca4b90d84c9024c9e4f0df7435a8ff, type: 3}
       propertyPath: m_Pivot.x
       value: 0
