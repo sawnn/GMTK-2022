@@ -7,7 +7,7 @@ public class Dice : MonoBehaviour
 
     int nb = 1;
 
-    public int life = 50;
+    public int life = 15;
     public int heat = 0;
 
     int steps = 0;
@@ -27,6 +27,7 @@ public class Dice : MonoBehaviour
     void Start()
     {
         fireBar.SetMinFire();
+        HealthBar.SetMaxHealth(life);
     }
 
     void Update()
