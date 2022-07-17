@@ -8,7 +8,7 @@ public class Dice : MonoBehaviour
     int nb = 1;
 
     public int life = 50;
-    public int heat = 50;
+    public int heat = 0;
 
     int steps = 0;
 
@@ -18,6 +18,16 @@ public class Dice : MonoBehaviour
 
     public int speed = 300;
     bool isMoving = false;
+
+
+    //UI Manon
+    public FireBar fireBar;
+    public HealthBar HealthBar;
+
+    void Start()
+    {
+        fireBar.SetMinFire();
+    }
 
     void Update()
     {
@@ -138,22 +148,26 @@ public class Dice : MonoBehaviour
 
     void Fire()
     {
-        heat -= nb;
+        heat = Mathf.Min(heat + nb, 15); //ajout Manon
+        fireBar.SetFire(heat);
     }
 
     void HealFire()
     {
-        heat += nb;
+        heat = Mathf.Max(heat - nb, 0); //ajout Manon
+        fireBar.SetFire(heat);
     }
 
     void Damage()
     {
-        life -= nb;
+        life = Mathf.Max(life - nb, 0); //ajout Manon
+        HealthBar.SetHealth(life);
     }
 
     void HealDamage()
     {
-        life += nb;
+        life = Mathf.Min(life + nb, 15); //ajout Manon
+        HealthBar.SetHealth(life);
     }
 
     void Blind()

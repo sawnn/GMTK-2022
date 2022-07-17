@@ -221,6 +221,7 @@ MonoBehaviour:
   life: 50
   heat: 50
   speed: 300
+  fireBar: {fileID: 6698246402938775129, guid: c08198b4c25d5494d87087820012b66e, type: 3}
 --- !u!54 &969291860
 Rigidbody:
   m_ObjectHideFlags: 0
