@@ -70,7 +70,7 @@ public class GridManager : MonoSingleton<GridManager>
         }
     }
 
-   /* private void NewGridRow(int nb)
+    private void NewGridRow(int nb)
     {
         for (int x = nb; x < xMax; x++)
         {
@@ -100,11 +100,11 @@ public class GridManager : MonoSingleton<GridManager>
 
     IEnumerator RemoveGround(int nb)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         //code here will execute after 5 seconds
         for (int i = 0; i < zMax; i++)
         {
-            Debug.Log(i + " " + (0 + nb));
+           // Debug.Log(i + " " + (0 + nb));
             if (l_ground[0 + nb][i] != null)
             {
                 Destroy(l_ground[0 + nb][i].gameObject);
@@ -118,35 +118,40 @@ public class GridManager : MonoSingleton<GridManager>
        // NewGridRow(nb + 1);
         StartCoroutine(RemoveGround(nb + 1));
         
-    }*/
+    }
 
 
 
-   private void NewGridRow(int nb)
+   /*private void NewGridRow(int nb)
     {
-        for (int x = nb; x < xMax; x++)
+        int i = 0;
+        for (int x = nb; x < squareGridDimension; x++)
         {
             var randomSlab = prefab[Random.Range(0, prefab.Length)];
             newSlab = Instantiate(randomSlab, transform);
-            Debug.Log(x + " " + zMax);
+           // Debug.Log(x + " " + zMax);
             newSlab.transform.position = new Vector3(x, 0, zMax);
             newSlab.name = x + " , " + zMax;
-            l_ground[x].Add(newSlab.GetComponent<Ground>());
+            l_ground[i][7] = newSlab.GetComponent<Ground>();
+            i++;
         }
         zMax++;
     }
 
     private void NewGridLine(int nb)
     {
-        l_ground.Add(new List<Ground>());
+        int i = 0;
+        l_ground.Add(new List<Ground> { null, null, null, null, null, null, null, null });
         for (int z = nb; z < zMax; z++)
         {
             var randomSlab = prefab[Random.Range(0, prefab.Length)];
             newSlab = Instantiate(randomSlab, transform);
-            Debug.Log(xMax + " " + z);
+          //  Debug.Log(xMax + " " + z +  " " + (z - nb));
             newSlab.transform.position = new Vector3(xMax, 0, z);
             newSlab.name = xMax + " , " + z;
-            l_ground[xMax].Add(newSlab.GetComponent<Ground>());
+           // l_ground[xMax].Add(newSlab.GetComponent<Ground>());
+            l_ground[7][i] = newSlab.GetComponent<Ground>();
+            i++;
         }
         xMax++;
     }
@@ -156,31 +161,26 @@ public class GridManager : MonoSingleton<GridManager>
     {
         yield return new WaitForSeconds(2f);
         //code here will execute after 5 seconds
-        for (int i = nb; i < squareGridDimension + nb; i++)
+        for (int i = 0; i < squareGridDimension; i++)
         {
 
-            if (l_ground[0 + nb][i] != null)
+            if (l_ground[0][i] != null)
             {
                 //  Debug.Log((0 + nb) + " " + i);
-                Destroy(l_ground[0 + nb][i].gameObject);
-                l_ground[0 + nb][i] = null;
+                Destroy(l_ground[0][i].gameObject);
+                l_ground[0][i] = null;
             }
 
         }
         yield return new WaitForSeconds(2f);
-        for (int i = nb; i < squareGridDimension + nb; i++)
+        for (int i = 0; i < squareGridDimension; i++)
         {
             Debug.Log(i + " " + (0 + nb) + "  " + squareGridDimension + nb);
-            if (l_ground[i] == null)
+            if (l_ground[i][0] != null)
             {
-                Debug.Log("nuggggg");
-
-            }
-            if (l_ground[i][0 + nb] != null)
-            {
-                Debug.Log("REAL " + i + " " + (0 + nb) + " xmax " + zMax);
-                Destroy(l_ground[i][0 + nb].gameObject);
-                l_ground[i][0 + nb] = null;
+             //   Debug.Log("REAL " + i + " " + (0) + " xmax " + zMax);
+                Destroy(l_ground[i][0].gameObject);
+                l_ground[i][0] = null;
             }
         }
         yield return new WaitForSeconds(2f);
@@ -189,5 +189,5 @@ public class GridManager : MonoSingleton<GridManager>
         NewGridLine(nb + 1);
         StartCoroutine(RemoveGround(nb + 1));
 
-    }
+    }*/
 }

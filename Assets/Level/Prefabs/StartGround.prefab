@@ -110,6 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56671c02160979348b2c773fb9c43b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlindMaterial: {fileID: 0}
+  BlindMaterial: {fileID: 2100000, guid: 6aa5bde592afdb840bef0e320d2f433a, type: 2}
   BlankMaterial: {fileID: 0}
   isBlank: 0

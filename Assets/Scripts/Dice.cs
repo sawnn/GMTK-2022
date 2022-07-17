@@ -66,6 +66,7 @@ public class Dice : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int last = horizontalFaces[horizontalFaces.Count - 1];
             horizontalFaces.Remove(last);
@@ -77,6 +78,7 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int first = horizontalFaces[0];
             horizontalFaces.RemoveAt(0);
@@ -88,6 +90,7 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int first = verticalFaces[0];
             verticalFaces.RemoveAt(0);
@@ -99,6 +102,7 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int last = verticalFaces[verticalFaces.Count - 1];
             verticalFaces.Remove(last);
@@ -133,6 +137,8 @@ public class Dice : MonoBehaviour
    
     }
 
+    
+
     IEnumerator Roll(Vector3 direction)
     {
         isMoving = true;
@@ -149,6 +155,7 @@ public class Dice : MonoBehaviour
             yield return null;
         }
         isMoving = false;
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
     }
 
     IEnumerator CountDiceSteps(int maxSteps)
@@ -156,18 +163,21 @@ public class Dice : MonoBehaviour
         steps = 0;
         while (steps < maxSteps)
         {
-            Debug.Log(steps);
             yield return null;
         }
 
         Unblind(false);
     }
 
+ 
+    private void OnTriggerEnter(Collider other)
+    {
+        gameOver.GameOverScreen();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-       // if (isMoving)
-            Debug.Log(collision.gameObject.tag);
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Fire"))
         {
             Fire();
@@ -250,7 +260,10 @@ public class Dice : MonoBehaviour
         {
             foreach (var item in ground)
             {
-                item.HideColor();
+                if (item != null)
+                {
+                    item.HideColor();
+                }
             }
             
         }
@@ -264,13 +277,16 @@ public class Dice : MonoBehaviour
         {
             foreach (var item in ground)
             {
-                if (bonus && item.gameObject.CompareTag("Blind"))
+                if (item != null)
                 {
-                    item.ChangeGreyInWhite();
-                }
-                else
-                {
-                    item.RevealColor();
+                    if (bonus && item.gameObject.CompareTag("Blind"))
+                    {
+                        item.ChangeGreyInWhite();
+                    }
+                    else
+                    {
+                        item.RevealColor();
+                    }
                 }
             }
            
@@ -278,7 +294,6 @@ public class Dice : MonoBehaviour
         if (bonus)
         {
             StartCoroutine(CountDiceSteps(nb));
-            Debug.Log(nb);
         }
  
     }
