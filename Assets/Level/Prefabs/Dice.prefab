@@ -218,9 +218,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e10d7b15dec4b1428e1e843d8b45bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 15
-  heat: 15
-  speed: 200
+  life: 50
+  heat: 50
+  speed: 300
+  fireBar: {fileID: 6698246402938775129, guid: c08198b4c25d5494d87087820012b66e, type: 3}
 --- !u!54 &969291860
 Rigidbody:
   m_ObjectHideFlags: 0
