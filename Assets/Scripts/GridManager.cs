@@ -20,8 +20,7 @@ public class GridManager : MonoSingleton<GridManager>
 
     private void GenerateSlabList()
     {
-        float posX = 0;
-        float posZ = 0;
+
 
 
         for (int x = 0; x < squareGridDimension; x++)
@@ -37,21 +36,16 @@ public class GridManager : MonoSingleton<GridManager>
 
                 else
                 {
-                    var randomSlab = prefab[Random.Range(0, prefab.Length)];
-                    newSlab = Instantiate(randomSlab, transform);
-                    //l_ground.Add(newTile.GetComponent<Ground>());
+                var randomSlab = prefab[Random.Range(0, prefab.Length)];
+                newSlab = Instantiate(randomSlab, transform);
+                l_ground.Add(newSlab.GetComponent<Ground>());
                 }
-                    posZ += 1;
 
-                    newSlab.transform.position = new Vector3(posX, 0, posZ);
-                    newSlab.name = x + " , " + z;
 
-                    if (x != 0)
-                        posX = x;
-                
-                
+                newSlab.transform.position = new Vector3(x, 0, z);
+                newSlab.name = x + " , " + z;
+
             }
-            posZ = 0;
         }
     }
 
