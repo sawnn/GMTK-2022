@@ -159,9 +159,8 @@ MonoBehaviour:
   - {fileID: 4196096481654346511, guid: 41b4df97fc7a8524ab58504ff4a97793, type: 3}
   - {fileID: 4196096481654346511, guid: 3f533325ad122fb45ae155ea7ef65f0c, type: 3}
   - {fileID: 4196096481654346511, guid: a92127cef363ac84c904f9faf71951d5, type: 3}
-  gridWidth: 8
-  gridHeight: 8
-  tileSize: 1
+  startPrefab: {fileID: 7704830391122193287, guid: 56dd41adb1d94d143ba3ea7d90d8bac2, type: 3}
+  squareGridDimension: 8
   l_ground: []
 --- !u!4 &106713111
 Transform:
@@ -440,7 +439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 543013741244940887, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 543013741244940887, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
       propertyPath: m_LocalRotation.w
@@ -473,6 +472,18 @@ PrefabInstance:
     - target: {fileID: 5257507014934379396, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
       propertyPath: m_Name
       value: Dice
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
+      propertyPath: heat
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
+      propertyPath: life
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811504555788087569, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}
+      propertyPath: speed
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff9054ebace756e409f347e5ff1d9788, type: 3}

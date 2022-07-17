@@ -7,8 +7,8 @@ public class Dice : MonoBehaviour
 
     int nb = 1;
 
-    public int life = 50;
-    public int heat = 50;
+    public int life = 15;
+    public int heat = 15;
 
     int steps = 0;
 
