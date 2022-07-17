@@ -8,9 +8,9 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audioMixerMusic;
     public AudioMixer audioMixerSounds;
 
-    public void FullScreen()
+    public void FullScreen(bool isFullScreen)
     {
-
+        Screen.fullScreen = isFullScreen;
     }
     public void SetMusicVolume(float volumeM)
     {
