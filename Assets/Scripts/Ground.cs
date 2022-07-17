@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
+    public Material BlindMaterial;
+    public Material BlankMaterial;
+    Material StartMaterial;
+    public bool isBlank = false;
+
+    private void Start()
+    {
+        StartMaterial = gameObject.GetComponent<MeshRenderer>().material;
+    }
 
     void Update()
     {
@@ -11,14 +20,22 @@ public class Ground : MonoBehaviour
         // (si temps suffisant écoulé) + si nombre de dalles passées suffisant 
     }
 
-    void HideColor()
+    public void HideColor()
     {
-
+        isBlank = false;
+        gameObject.GetComponent<MeshRenderer>().material = BlindMaterial;
     }
 
-    private void RevealColor()
+    public void RevealColor()
     {
+        isBlank = false;
+        gameObject.GetComponent<MeshRenderer>().material = StartMaterial;
+    }
 
+    public void ChangeGreyInWhite()
+    {
+        isBlank = true;
+        gameObject.GetComponent<MeshRenderer>().material = BlankMaterial;
     }
 
 }
