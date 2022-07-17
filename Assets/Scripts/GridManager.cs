@@ -27,12 +27,17 @@ public class GridManager : MonoSingleton<GridManager>
         xMax = squareGridDimension;
         zMax = squareGridDimension;
         GenerateSlabList();
-        StartCoroutine(RemoveGround(0));
+     
     }
 
     private void Update()
     {
       
+    }
+
+    public void StartRemove()
+    {
+        StartCoroutine(RemoveGround(0));
     }
 
     public void GenerateSlabList()

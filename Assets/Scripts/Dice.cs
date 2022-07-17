@@ -23,6 +23,8 @@ public class Dice : MonoBehaviour
     public int speed = 300;
     bool isMoving = false;
 
+    bool startRem = false;
+
 
     //UI Manon
     public FireBar fireBar;
@@ -64,8 +66,14 @@ public class Dice : MonoBehaviour
             return;
         }
 
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            if (startRem == false)
+            {
+                startRem = true;
+                GridManager.Instance.StartRemove();
+            }
             gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int last = horizontalFaces[horizontalFaces.Count - 1];
@@ -78,6 +86,11 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
+            if (startRem == false)
+            {
+                startRem = true;
+                GridManager.Instance.StartRemove();
+            }
             gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int first = horizontalFaces[0];
@@ -90,6 +103,11 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
+            if (startRem == false)
+            {
+                startRem = true;
+                GridManager.Instance.StartRemove();
+            }
             gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int first = verticalFaces[0];
@@ -102,6 +120,11 @@ public class Dice : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
+            if (startRem == false)
+            {
+                startRem = true;
+                GridManager.Instance.StartRemove();
+            }
             gameObject.GetComponent<Rigidbody>().useGravity = false;
             score++;
             int last = verticalFaces[verticalFaces.Count - 1];
