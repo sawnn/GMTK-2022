@@ -18,6 +18,7 @@ public class GameOver : MonoBehaviour
     public void GameOverScreen()
     {
         GameOverUI.SetActive(true);
+        AudioManager.Instance.AudioSourceStop();
         textScore.text = dice.score.ToString();
         Time.timeScale = 0f;
     }

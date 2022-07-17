@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoSingleton<AudioManager>
 {
     public AudioClip[] playlist;
     public AudioSource audioSource;
@@ -28,5 +28,11 @@ public class AudioManager : MonoBehaviour
         _musicIndex = (_musicIndex + 1) % playlist.Length;
         audioSource.clip = playlist[_musicIndex];
         audioSource.Play();
+    }
+
+    public void AudioSourceStop()
+    {
+        Debug.Log("T MORT");
+        audioSource.pitch *= 0f;
     }
 }

@@ -50,6 +50,9 @@ public class Dice : MonoBehaviour
     //GameOver Manon
     public GameOver gameOver;
 
+    //autre Manon
+    public bool dead = false;
+
     void Start()
     {
         fireBar.SetMinFire();
@@ -156,7 +159,7 @@ public class Dice : MonoBehaviour
         steps = 0;
         while (steps < maxSteps)
         {
-            Debug.Log(steps);
+
             yield return null;
         }
 
