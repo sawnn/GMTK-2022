@@ -17,6 +17,11 @@ public class GridManager : MonoSingleton<GridManager>
     private int xMax;
     private int zMax;
 
+    int[] countPrefab = { 0, 0, 0, 0, 0, 0 };
+    int[] maxPrefab = { 13, 13, 13, 8, 8, 9};
+    string[] namePrefab = { };
+
+
     private void Start()
     {
         xMax = squareGridDimension;
@@ -48,9 +53,15 @@ public class GridManager : MonoSingleton<GridManager>
 
                 else
                 {
-                var randomSlab = prefab[Random.Range(0, prefab.Length)];
-                newSlab = Instantiate(randomSlab, transform);
-                l_ground.Add(newSlab.GetComponent<Ground>());
+                    int random = Random.Range(0, prefab.Length);
+                    do 
+                    {
+                        random = Random.Range(0, prefab.Length);
+                    } while (countPrefab[random] >=  maxPrefab[random]);
+                    countPrefab[random]++;
+                    var randomSlab = prefab[random];
+                    newSlab = Instantiate(randomSlab, transform);
+                    l_ground.Add(newSlab.GetComponent<Ground>());
                 }
 
                 newSlab.transform.position = new Vector3(x, 0, z);
@@ -68,6 +79,7 @@ public class GridManager : MonoSingleton<GridManager>
             newSlab = Instantiate(randomSlab, transform);
             newSlab.transform.position = new Vector3(x, 0, zMax);
             newSlab.name = x + " , " + zMax;
+            l_ground.Add(newSlab.GetComponent<Ground>());
         }
         zMax++;
     }
@@ -80,6 +92,7 @@ public class GridManager : MonoSingleton<GridManager>
             newSlab = Instantiate(randomSlab, transform);
             newSlab.transform.position = new Vector3(xMax, 0, z);
             newSlab.name = xMax + " , " + z;
+            l_ground.Add(newSlab.GetComponent<Ground>());
         }
         xMax++;
     }
